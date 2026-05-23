@@ -7,8 +7,8 @@ class userController:
     def getMyAllReserve():
         myAllReserve = userModel.getMyAllReserve()
         if not myAllReserve:
-            return jsonify({'error': 'Reserves not found'}), 401
-        return jsonify({'my_reserve': myAllReserve}), 200
+            return jsonify([]), 200
+        return jsonify(myAllReserve), 200
     
     @staticmethod
     def setMyReserve():
@@ -23,5 +23,5 @@ class userController:
     def getAllReserve():
         allReserve = userModel.getAllReserve()
         if not allReserve:
-            return jsonify({'error': 'Reserves not found'}), 401
-        return jsonify({'all_reserve': allReserve}), 200
+            return jsonify([]), 200
+        return jsonify(allReserve), 200

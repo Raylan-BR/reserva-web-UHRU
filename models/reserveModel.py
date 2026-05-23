@@ -63,17 +63,7 @@ class reserveModel:
     @staticmethod
     def getAllReserve():
         allReserve = db.get_all_register()
-        for reserve in allReserve:
-            reserve["dateTimeStart"] = (
-                reserve["dateTimeStart"]
-                .replace(tzinfo=timezone.utc)
-                .astimezone(ZoneInfo("America/Sao_Paulo"))
-            )
-            reserve["dateTimeEnd"] = (
-                reserve["dateTimeEnd"]
-                .replace(tzinfo=timezone.utc)
-                .astimezone(ZoneInfo("America/Sao_Paulo"))
-            )
+
         return allReserve
     
     @staticmethod

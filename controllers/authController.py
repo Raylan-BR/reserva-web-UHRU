@@ -16,6 +16,3 @@ class authController:
         except Exception as e:
             print(f'Error in login method: {e}')
             return jsonify(status), 401
-    @staticmethod
-    def showLogin():
-        return render_template('pages/authentication.html')
