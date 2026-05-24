@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+@import url('components/nav.css');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Alan Sans", sans-serif;
+}
+body{
+    background-color: #f0f6ff;
+    display: flex;
+    flex-direction: row;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 73vw;
+    margin-left: 27vw;
+}
+main section h2{
+    margin-bottom: 20px;
+}

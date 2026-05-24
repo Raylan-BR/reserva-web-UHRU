@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Alan Sans", sans-serif;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f6ff;
+}
+.head_nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.icon_nav{
+    background-color: #22223b;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.content_head p{
+    font-size: 11pt;
+    color: #65758c;
+}
+.content_head h3{
+    color: #1b263b;
+}
+form{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+form h1{
+    margin: 20px 0;
+}
+form input{
+    width: 450px;
+    padding: 10px;
+    font-size: 12pt;
+    margin-bottom: 10px;
+}
+form a{
+    margin-top: 10px;
+}
+#btnAutentication{
+    margin-top: 20px;
+    background-color: #1b263b;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    font-size: 13pt;
+    border-radius: 10px;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    body{
+        background-color: #fff;
+    }
+    form{
+        padding: 0;
+    }
+    form input{
+        width: 90vw;
+    }
+    .containerBtnAutenticate{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        padding: 20px;
+        width: 100%;
+    }
+}
