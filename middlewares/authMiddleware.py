@@ -1,11 +1,11 @@
 from functools import wraps
 from services.jwtService import jwtService
-from flask import request, jsonify
+from flask import jsonify
 
 def checkToken(f):
     @wraps(f)
     def decorator(*args, **kwargs):
-        token = getTokenRequest()
+        token = jwtService.getTokenRequest()
 
         if isinstance(token, dict):
             return jsonify(token), 200
@@ -16,12 +16,3 @@ def checkToken(f):
             return jsonify({'error': 'Invalid token'}), 200
         return f(*args, **kwargs)
     return decorator
-
-def getTokenRequest():
-    auth_header = request.headers.get('Authorization')
-    if not auth_header:
-        return {'error': 'Token not send'}
-    try:
-        return auth_header.split(' ')[1]
-    except:
-        return {'error': 'Invalid format'}

@@ -37,7 +37,7 @@ class DatabaseMongoDb:
             return False
 
     def create_register(
-            self, _name, _dateTimeStart: datetime, _dateTimeEnd: datetime
+            self, _name: str, _dateTimeStart: datetime, _dateTimeEnd: datetime
         ):
         try:
             query = {

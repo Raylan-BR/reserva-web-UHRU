@@ -16,3 +16,6 @@ user.route('/delete/<id>', methods=['DELETE'])(
 user.route('/getAllReserve', methods=['GET'])(
     userController.getAllReserve
 )
+user.route('/', methods=['GET'])(
+    userController.getHomePage
+)

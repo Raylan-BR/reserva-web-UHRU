@@ -1,30 +1,29 @@
 from database.DatabaseMongoDb import db
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
-from middlewares.authMiddleware import getTokenRequest
 from services.jwtService import jwtService
 from services.reserveService import reserveService
 
 class reserveModel:  
     @staticmethod
     def createReserve(dateTimeStart, dateTimeEnd):
-        name = reserveModel.__getNameForToken(
-            getTokenRequest()
+        __name = reserveModel.getNameForToken(
+            jwtService.getTokenRequest()
         )
-        status = reserveModel.__validateDateTime(
+        __time = reserveModel.validateDateTime(
             dateTimeStart,
             dateTimeEnd
         )
         try:
             db.create_register(
-                name, status[0], status[1])
+                __name, __time['start'], __time['end'])
             return {'message': 'Sucess create reserve'}
         except Exception as e:
             print(f'Error in createReserve method: {e}')
-            return status
+            return __time
         
     @staticmethod
-    def __validateDateTime(dateTimeStart, dateTimeEnd):
+    def validateDateTime(dateTimeStart, dateTimeEnd):
         try:
             # Conversão de tipo
             _dateTimeStart = datetime.strptime(
@@ -48,7 +47,8 @@ class reserveModel:
                 return {'error': 'Time exist'}
 
             # Passou pela validação            
-            return [_dateTimeStart, _dateTimeEnd]
+            return {'start': _dateTimeStart,
+                    'end': _dateTimeEnd}
         
         except Exception as e:
             print(f'Error in __validateDateTime method: {e}')
@@ -69,8 +69,8 @@ class reserveModel:
     
     @staticmethod
     def getMyAllReserve():
-        name = reserveModel.__getNameForToken(
-            getTokenRequest()
+        name = reserveModel.getNameForToken(
+            jwtService.getTokenRequest()
         )
         myAllReserve = db.get_all_register({'name': name})
         for myReserve in myAllReserve:
@@ -87,7 +87,7 @@ class reserveModel:
         return myAllReserve
     
     @staticmethod
-    def __getNameForToken(token):
+    def getNameForToken(token):
         if not isinstance(token, str):
             return None
         payload = jwtService.validateToken(token)
@@ -96,7 +96,6 @@ class reserveModel:
     @staticmethod
     def deleteReserve(id):
         status = db.delete_register(id)
-        print(f'resultado do delete: {status}')
         if status:
             return {'message': 'Sucess delete'}
         return {'error': 'Not delete'}

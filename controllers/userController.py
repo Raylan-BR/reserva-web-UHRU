@@ -30,3 +30,7 @@ class userController:
         if not allReserve:
             return jsonify([]), 200
         return jsonify(allReserve), 200
+    
+    @staticmethod
+    def getHomePage():
+        return render_template('index.html')
