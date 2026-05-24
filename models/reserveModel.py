@@ -53,6 +53,7 @@ class reserveModel:
         except Exception as e:
             print(f'Error in __validateDateTime method: {e}')
             return {'error': 'Time convert'}
+        
     @staticmethod
     def __timeOverlap(dateTimeStart, dateTimeEnd):
         status = db.exist_reserve(dateTimeStart, dateTimeEnd)
@@ -84,9 +85,18 @@ class reserveModel:
                 .astimezone(ZoneInfo("America/Sao_Paulo"))
             )
         return myAllReserve
+    
     @staticmethod
     def __getNameForToken(token):
         if not isinstance(token, str):
             return None
         payload = jwtService.validateToken(token)
         return payload['name']
+    
+    @staticmethod
+    def deleteReserve(id):
+        status = db.delete_register(id)
+        print(f'resultado do delete: {status}')
+        if status:
+            return {'message': 'Sucess delete'}
+        return {'error': 'Not delete'}

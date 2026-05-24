@@ -20,6 +20,11 @@ class userController:
             userModel.createReserve(dateTimeStart, dateTimeEnd))
 
     @staticmethod
+    def deleteReserve(id):
+        status = userModel.deleteReserve(id)
+        return jsonify(status), 200
+
+    @staticmethod
     def getAllReserve():
         allReserve = userModel.getAllReserve()
         if not allReserve:

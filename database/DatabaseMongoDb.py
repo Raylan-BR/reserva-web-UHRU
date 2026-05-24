@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 from configs.config import Config
 from datetime import datetime
 
@@ -57,6 +58,7 @@ class DatabaseMongoDb:
         except Exception as e:
             print(f'Error in get_register_all method: {e}')
             return None
+        
     def exist_reserve(
         self, _dateTimeStart: datetime, _dateTimeEnd: datetime
     ):
@@ -65,5 +67,15 @@ class DatabaseMongoDb:
             "dateTimeStart": { "$lt": _dateTimeEnd },
             "dateTimeEnd": { "$gt": _dateTimeStart }
         })
+    
+    def delete_register(self, id):
+        try:
+            _del = self.__registers.delete_one({"_id": ObjectId(id)})
+            if _del.deleted_count != 0:
+                return True
+            return False
+        except:
+            print('Error in delete_register method')
+            return False
 
 db = DatabaseMongoDb()

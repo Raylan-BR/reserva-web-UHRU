@@ -8,12 +8,12 @@ def checkToken(f):
         token = getTokenRequest()
 
         if isinstance(token, dict):
-            return jsonify(token), 401
+            return jsonify(token), 200
         
         payload = jwtService.validateToken(token)
         
         if not payload:
-            return jsonify({'error': 'Invalid token'}), 401
+            return jsonify({'error': 'Invalid token'}), 200
         return f(*args, **kwargs)
     return decorator
 

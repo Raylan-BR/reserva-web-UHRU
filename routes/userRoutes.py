@@ -10,6 +10,9 @@ user.route('/getMyAllReserve', methods=['GET'])(
 user.route('/setMyReserve', methods=['POST'])(
     checkToken(userController.setMyReserve)
 )
+user.route('/delete/<id>', methods=['DELETE'])(
+    checkToken(userController.deleteReserve)
+)
 user.route('/getAllReserve', methods=['GET'])(
     userController.getAllReserve
 )
