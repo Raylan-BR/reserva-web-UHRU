@@ -7,7 +7,7 @@ from services.reserveService import reserveService
 class reserveModel:  
     @staticmethod
     def createReserve(dateTimeStart, dateTimeEnd):
-        __name = reserveModel.getNameForToken(
+        __name = jwtService.getNameForToken(
             jwtService.getTokenRequest()
         )
         __time = reserveModel.validateDateTime(
@@ -69,7 +69,7 @@ class reserveModel:
     
     @staticmethod
     def getMyAllReserve():
-        name = reserveModel.getNameForToken(
+        name = jwtService.getNameForToken(
             jwtService.getTokenRequest()
         )
         myAllReserve = db.get_all_register({'name': name})
@@ -85,13 +85,6 @@ class reserveModel:
                 .astimezone(ZoneInfo("America/Sao_Paulo"))
             )
         return myAllReserve
-    
-    @staticmethod
-    def getNameForToken(token):
-        if not isinstance(token, str):
-            return None
-        payload = jwtService.validateToken(token)
-        return payload['name']
     
     @staticmethod
     def deleteReserve(id):

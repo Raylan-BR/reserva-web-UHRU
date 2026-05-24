@@ -22,9 +22,21 @@ class jwtService:
     @staticmethod
     def getTokenRequest():
         auth_header = request.headers.get('Authorization')
-        if not auth_header:
-            return {'error': 'Token not send'}
         try:
-            return auth_header.split(' ')[1]
+            __token = auth_header.split(' ')[1]
+            if not auth_header:
+                return {'error': 'Token not send'}
+            return __token
         except:
             return {'error': 'Invalid format'}
+        
+    @staticmethod
+    def getNameForToken(token):
+        try:
+            if not isinstance(token, str):
+                return None
+            payload = jwtService.validateToken(token)
+            return payload['name']
+        except:
+            print('Error in getNameForToken method !')
+            return None
