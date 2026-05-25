@@ -1,0 +1,40 @@
+.reserve_item{
+    width: 80%;
+    padding: 20px 15px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    color: #22223b;
+    margin-bottom: 10px;
+}
+.reserve_itemL{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.reserve_itemR{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.manage_item{
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.icon_manage{
+    background-color: #22223b;
+    border-radius: 50%;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}

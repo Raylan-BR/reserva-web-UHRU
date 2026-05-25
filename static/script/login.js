@@ -4,7 +4,7 @@ document.querySelector('form').addEventListener('submit', (e) =>{
     const email = document.querySelector('#login_email').value;
 
     try {
-        fetch('/login',{
+        fetch('/api/getTokenLogin',{
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
             body: JSON.stringify({'email': email}),
