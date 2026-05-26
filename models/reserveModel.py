@@ -65,6 +65,9 @@ class reserveModel:
     def getAllReserve():
         allReserve = db.get_all_register()
 
+        for reserve in allReserve:
+            reserve.pop('_id', None)
+
         return allReserve
     
     @staticmethod
@@ -73,22 +76,14 @@ class reserveModel:
             jwtService.getTokenRequest()
         )
         myAllReserve = db.get_all_register({'name': name})
-        for myReserve in myAllReserve:
-            myReserve["dateTimeStart"] = (
-                myReserve["dateTimeStart"]
-                .replace(tzinfo=timezone.utc)
-                .astimezone(ZoneInfo("America/Sao_Paulo"))
-            )
-            myReserve["dateTimeEnd"] = (
-                myReserve["dateTimeEnd"]
-                .replace(tzinfo=timezone.utc)
-                .astimezone(ZoneInfo("America/Sao_Paulo"))
-            )
         return myAllReserve
     
     @staticmethod
     def deleteReserve(id):
-        status = db.delete_register(id)
+        name = jwtService.getNameForToken(
+            jwtService.getTokenRequest()
+            )
+        status = db.delete_register(id, name)
         if status:
             return {'message': 'Sucess delete'}
         return {'error': 'Not delete'}

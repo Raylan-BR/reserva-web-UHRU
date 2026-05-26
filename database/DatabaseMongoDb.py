@@ -64,13 +64,17 @@ class DatabaseMongoDb:
     ):
         # Sobreposição de horários
         return self.__registers.find_one({
-            "dateTimeStart": { "$lt": _dateTimeEnd },
-            "dateTimeEnd": { "$gt": _dateTimeStart }
+            'dateTimeStart': { "$lt": _dateTimeEnd },
+            'dateTimeEnd': { "$gt": _dateTimeStart }
         })
     
-    def delete_register(self, id):
+    def delete_register(self, id, name):
+        query = {
+            '_id': ObjectId(id),
+            'name': name
+            }
         try:
-            _del = self.__registers.delete_one({"_id": ObjectId(id)})
+            _del = self.__registers.delete_one(query)
             if _del.deleted_count != 0:
                 return True
             return False
