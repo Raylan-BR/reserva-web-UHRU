@@ -1,0 +1,28 @@
+<h2>Reservar agora</h2>
+<form action="setMyReserve" method="post" class="reserve_home_now">
+    <div class="containerDate">
+        <p>Selecione a data da <strong>Reserva</strong></p>
+        <input type="date" value="0000-00-00" name="date" id="date" required>
+    </div>
+    <div class="containerTime">
+        <p>Selecione o horário de <strong>Início</strong></p>
+        <div class="icon_clock">
+            <input type="time" min="00:00" max="23:59" value="00:00" name="timeStart" id="timeStart" required>
+            <svg style="width: 23px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+        </div>
+    </div>
+    <div class="containerTime">
+        <p>Selecione o horário de <strong>Término</strong></p>
+        <div class="icon_clock">
+            <input type="time" min="00:00" max="23:59" value="00:00" name="timeEnd" id="timeEnd" required>
+            <svg style="width: 23px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+        </div>
+    </div>
+    <div class="containerBtnReserveNow">
+        <input type="submit" value="Reservar Sala de Pesquisa" class="btnReserveNow">
+    </div>
+</form>

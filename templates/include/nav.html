@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="footer_nav">
-    <div class="letter_user">E</div>
+    <div class="letter_user">{{ user_name[0] | default('E', True)}}</div>
     <h3 style="width: 200px; overflow: hidden;
     white-space: nowrap; text-overflow: ellipsis;">
         {{ user_name | default('Entre com seu email', True)}}
