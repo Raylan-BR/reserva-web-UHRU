@@ -5,17 +5,28 @@ from services.jwtService import jwtService
 class apiController:
     @staticmethod
     def getTokenLogin():
-        datas = request.json
-        userEmail = datas.get('email')
-        status = userModel.validateUserForEmail(userEmail)
         try:
-            token = jwtService.generateToken(status['name'])
-            if not token:
-                return jsonify({'error': 'Not generate token'}), 401
-            return jsonify({'token': token}), 200
-        except Exception as e:
-            print(f'Error in login method: {e}')
-            return jsonify(status), 401
+            datas = request.json
+            userEmail = datas.get('email')
+            status = userModel.validateUserForEmail(userEmail)
+            if status['sucess']:
+                token = jwtService.generateToken(status['name'])
+                if not token:
+                    return jsonify({
+                            'sucess': False,
+                            'message': 'Not generate token'
+                        }), 401
+                return jsonify({
+                            'sucess': True,
+                            'token': token}), 200
+            else:
+                return jsonify(status), 401
+        except:
+            print('Error in getTokenLogin method !')
+            return jsonify({
+                            'sucess': False,
+                            'message': 'Problems in process'
+                        }), 401
         
     @staticmethod
     def getMyAllReserve():
@@ -26,12 +37,19 @@ class apiController:
     
     @staticmethod
     def setMyReserve():
-        datas = request.json
-        dateTimeStart = datas.get('dateTimeStart')
-        dateTimeEnd = datas.get('dateTimeEnd')
+        try:
+            datas = request.json
+            dateTimeStart = datas.get('dateTimeStart')
+            dateTimeEnd = datas.get('dateTimeEnd')
 
-        return jsonify(
-            userModel.createReserve(dateTimeStart, dateTimeEnd))
+            return jsonify(
+                userModel.createReserve(dateTimeStart, dateTimeEnd))
+        except:
+            print('Error in setMyReserve method !')
+            jsonify({
+                    'sucess': False,
+                    'message': 'Invalid datas'
+                        }), 400
 
     @staticmethod
     def deleteReserve(id):

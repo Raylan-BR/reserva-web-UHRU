@@ -69,11 +69,11 @@ class DatabaseMongoDb:
         })
     
     def delete_register(self, id, name):
-        query = {
-            '_id': ObjectId(id),
-            'name': name
-            }
         try:
+            query = {
+                '_id': ObjectId(id),
+                'name': name
+                }
             _del = self.__registers.delete_one(query)
             if _del.deleted_count != 0:
                 return True

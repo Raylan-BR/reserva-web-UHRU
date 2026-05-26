@@ -17,7 +17,10 @@ class reserveModel:
         try:
             db.create_register(
                 __name, __time['start'], __time['end'])
-            return {'message': 'Sucess create reserve'}
+            
+            return {
+                'sucess': True,
+                'message': 'Sucess create reserve'}
         except Exception as e:
             print(f'Error in createReserve method: {e}')
             return __time
@@ -44,7 +47,9 @@ class reserveModel:
             
             # Verificar sobreposição de horário
             if reserveModel.__timeOverlap(_dateTimeStart, _dateTimeEnd):
-                return {'error': 'Time exist'}
+                return {
+                    'sucess': False,
+                    'message': 'Error time exist'}
 
             # Passou pela validação            
             return {'start': _dateTimeStart,
@@ -52,7 +57,9 @@ class reserveModel:
         
         except Exception as e:
             print(f'Error in __validateDateTime method: {e}')
-            return {'error': 'Time convert'}
+            return {
+                'sucess': False,
+                'message': 'Error time convert'}
         
     @staticmethod
     def __timeOverlap(dateTimeStart, dateTimeEnd):
@@ -85,5 +92,9 @@ class reserveModel:
             )
         status = db.delete_register(id, name)
         if status:
-            return {'message': 'Sucess delete'}
-        return {'error': 'Not delete'}
+            return {
+                'sucess': True,
+                'message': 'Sucess delete'}
+        return {
+            'sucess': False,
+            'message': 'Error not delete'}
