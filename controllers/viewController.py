@@ -20,7 +20,11 @@ class viewController:
     
     @staticmethod
     def getItemPage():
-        return render_template('components/item.html')
+        return render_template('components/item.html', delete=False)
+    
+    @staticmethod
+    def getItemPageWithDelete():
+        return render_template('components/item.html', delete=True)
     
     @staticmethod
     def getFormReservePage():

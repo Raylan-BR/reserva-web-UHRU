@@ -1,6 +1,7 @@
 import { requestAndShowAllReserve } from './dashboardRequests/requestAndShowAllReserve.js';
 import { requestServer } from './utils/requestServer.js';
 import { requestAndShowFormReserve } from './dashboardRequests/requestAndShowFormReserve.js';
+import { requestAndShowMyAllReserve } from './dashboardRequests/requestAndShowMyAllReserve.js';
 
 DashboardLoaded();
 
@@ -13,6 +14,9 @@ async function DashboardLoaded() {
 
     document.querySelector('.request_reserve_form')
     ?.addEventListener('click', requestAndShowFormReserve);
+
+    document.querySelector('.request_my_reserve')
+    ?.addEventListener('click', requestAndShowMyAllReserve);
 
     document.querySelector('.request_logout')
     ?.addEventListener('click', requestLogout);
