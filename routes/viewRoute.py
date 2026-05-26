@@ -12,6 +12,9 @@ view.route('/nav', methods=['GET'])(
 view.route('/login', methods=['GET'])(
     viewController.getLoginPage
 )
-view.route('/getAllReserve', methods=['GET'])(
-    viewController.getAllReserve
+view.route('/item', methods=['GET'])(
+    viewController.getItemPage
+)
+view.route('/form', methods=['GET'])(
+    viewController.getFormReservePage
 )

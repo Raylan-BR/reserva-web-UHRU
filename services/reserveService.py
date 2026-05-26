@@ -19,4 +19,3 @@ class reserveService:
         if _dateTimeStart < timeNow or _dateTimeEnd < timeNow:
             return {'error': 'Time past'}
         return None
-        
