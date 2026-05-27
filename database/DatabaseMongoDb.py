@@ -63,10 +63,15 @@ class DatabaseMongoDb:
         self, _dateTimeStart: datetime, _dateTimeEnd: datetime
     ):
         # Sobreposição de horários
-        return self.__registers.find_one({
+        reserveExist = self.__registers.find_one({
             'dateTimeStart': { "$lt": _dateTimeEnd },
             'dateTimeEnd': { "$gt": _dateTimeStart }
         })
+
+        if reserveExist:
+            reserveExist.pop('_id', None)
+
+        return reserveExist
     
     def delete_register(self, id, name):
         try:

@@ -3,6 +3,7 @@ import { validateDateTime } from "../utils/formatDateTime.js";
 import { notificationPopUp } from '../utils/notificationPopUp.js'; 
 import { messageRequest } from "../utils/messageRequest.js";
 import { openCloseMenu } from "../utils/menuMobile.js";
+import { getTimeReserve } from "../utils/formatDateTime.js";
 
 export async function requestAndShowFormReserve(){
     const formReserveHtml = await requestServer('/form', true);
@@ -37,13 +38,24 @@ async function requestSetMyReserve(event){
         }
 
         const response = await requestServer('/api/setMyReserve', false, options);
-        
-        notificationPopUp(messageRequest[response.message]);
 
         if(response.sucess){
+            notificationPopUp(messageRequest[response.message]);
             setTimeout(() => {
                 window.location.href = '/';
             }, 2000);
+        } else {
+            if (response.message == 'ERROR_TIME_EXIST') {
+                let timeExistStart = response.reserve.dateTimeStart;
+                timeExistStart = getTimeReserve(timeExistStart);
+
+                let timeExistEnd = response.reserve.dateTimeEnd;
+                timeExistEnd = getTimeReserve(timeExistEnd);
+
+                notificationPopUp(`Já existe entre ${timeExistStart}h e ${timeExistEnd}h`);
+            }  else {
+                notificationPopUp(messageRequest[response.message]);
+            } 
         }
 
     } catch(err) {

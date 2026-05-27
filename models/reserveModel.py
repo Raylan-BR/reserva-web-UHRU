@@ -45,10 +45,12 @@ class reserveModel:
                 return invalid    
 
             # Verificar sobreposição de horário
-            if reserveModel.__timeOverlap(_dateTimeStart, _dateTimeEnd):
+            searchReserve = reserveModel.__timeOverlap(_dateTimeStart, _dateTimeEnd)
+            if searchReserve:
                 return {
                     'sucess': False,
-                    'message': 'ERROR_TIME_EXIST'}
+                    'message': 'ERROR_TIME_EXIST',
+                    'reserve': searchReserve}
 
             # Passou pela validação            
             return {
@@ -65,10 +67,7 @@ class reserveModel:
         
     @staticmethod
     def __timeOverlap(dateTimeStart, dateTimeEnd):
-        status = db.exist_reserve(dateTimeStart, dateTimeEnd)
-        if status:
-            return True
-        return False
+        return db.exist_reserve(dateTimeStart, dateTimeEnd)
 
     @staticmethod
     def getAllReserve():
