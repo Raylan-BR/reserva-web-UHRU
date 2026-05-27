@@ -35,9 +35,7 @@ async function requestSetMyReserve(event){
 
         const response = await requestServer('/api/setMyReserve', false, options);
         
-        const msg = response.message;
-        
-        notificationPopUp(messageRequest[msg]);
+        notificationPopUp(messageRequest[response.message]);
 
     } catch(err) {
 

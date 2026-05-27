@@ -20,6 +20,17 @@ async function DashboardLoaded() {
 
     document.querySelector('.request_logout')
     ?.addEventListener('click', requestLogout);
+
+    document.querySelector('.icon_hamburguer')
+    ?.addEventListener('click', ()=>{
+        openCloseMenu();
+    });
+
+    document.querySelectorAll('.option_nav').forEach(option=>{
+        option.addEventListener('click', ()=>{
+            openCloseMenu(true);
+        });
+    });
 }
 
 requestAndShowAllReserve();
@@ -27,4 +38,12 @@ requestAndShowAllReserve();
 export function requestLogout(){
     localStorage.removeItem('token');
     window.location.href = '/';
+}
+function openCloseMenu(close=false){
+    const navBar = document.querySelector('nav');
+    if(close){
+        navBar.classList.remove('navBar');
+    } else {
+        navBar.classList.toggle('navBar');
+    }
 }
