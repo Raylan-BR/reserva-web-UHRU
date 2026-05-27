@@ -62,3 +62,34 @@ class apiController:
         if not allReserve:
             return jsonify([]), 200
         return jsonify(allReserve), 200
+    
+    @staticmethod
+    def addNewUser():
+        try:
+            user = request.json
+            name = user.get('name')
+            email = user.get('email')
+
+            if not name or not email:
+                return jsonify({
+                    'sucess': False,
+                    'message': 'INVALID_INFO'
+                }), 401
+
+            status, msg = userModel.addNewUser(name, email)
+
+            if status:
+                return jsonify({
+                    'sucess': True,
+                    'message': msg
+                }), 200
+            return jsonify({
+                    'sucess': False,
+                    'message': msg
+                }), 401
+            
+        except:
+            return jsonify({
+                'sucess': False,
+                'message': 'INVALID_INFO'
+            }), 401

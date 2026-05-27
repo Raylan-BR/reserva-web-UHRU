@@ -1,6 +1,6 @@
 from flask import Blueprint
 from controllers.apiController import apiController
-from middlewares.checkToken import checkToken
+from middlewares.checkToken import checkToken, checkAdm
 
 api = Blueprint('api', __name__)
 
@@ -18,4 +18,7 @@ api.route('/api/delete/<id>', methods=['DELETE'])(
 )
 api.route('/api/getAllReserve', methods=['GET'])(
     apiController.getAllReserve
+)
+api.route('/api/addNewUser', methods=['POST'])(
+    checkAdm(apiController.addNewUser)
 )

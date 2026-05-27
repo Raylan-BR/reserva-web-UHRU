@@ -24,3 +24,16 @@ class userModel(reserveModel):
             return True
         else:
             return False
+    
+    @staticmethod
+    def addNewUser(name: str, email: str):
+        if not name:
+            return False, 'INVALID_NAME'
+        emailCheck = userModel.__checkEmail(email)
+        if emailCheck:
+            statusCreate = db.create_user(name, email)
+            if statusCreate:
+                return True, 'CREATE_USER'
+            return False, 'NOT_CREATE_USER'
+        
+        return False, 'INVALID_EMAIL'
