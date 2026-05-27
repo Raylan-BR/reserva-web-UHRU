@@ -19,9 +19,12 @@ class reserveService:
                     'sucess': False,
                     'message': 'ERROR_TIME_OUT'}
         # horario passado
-        timeNow = datetime.now(timezone.utc).replace(
-            tzinfo=timezone.utc
-        ).astimezone(ZoneInfo("America/Sao_Paulo"))
+        timeNow = (
+            datetime.now(timezone.utc)
+            .astimezone(ZoneInfo("America/Sao_Paulo"))
+            - timedelta(minutes=1)
+        )
+        
         if _dateTimeStart < timeNow or _dateTimeEnd < timeNow:
             return {
                 'sucess': False,
