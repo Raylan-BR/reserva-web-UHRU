@@ -1,4 +1,5 @@
 import { notificationPopUp } from './utils/notificationPopUp.js';
+import { messageRequest } from './utils/messageRequest.js';
 
 document.querySelector('form').addEventListener('submit', (e) =>{
     e.preventDefault();
@@ -17,7 +18,7 @@ document.querySelector('form').addEventListener('submit', (e) =>{
                 localStorage.setItem('token', data.token);
                 window.location.href = '/';
             } else {
-                notificationPopUp('Não encontramos seu email !');
+                notificationPopUp(messageRequest[data.message]);
             }
         });
     

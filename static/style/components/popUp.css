@@ -23,3 +23,14 @@
     border-radius: 50%;
     color: #fff;
 }
+
+@media (max-width: 768px){
+    .notification_conteiner{
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: none;
+        border: none;
+    }
+}
