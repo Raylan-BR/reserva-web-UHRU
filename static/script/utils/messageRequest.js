@@ -1,0 +1,18 @@
+export const messageRequest = {
+    NOT_GENERATE_TOKEN: "Token não foi gerado",
+    PROBLEMS_IN_PROCESS: "Problemas no processamento",
+    INVALID_DATES: "Reserva inválida",
+    SUCESS_CREATE_RESERVE: "Reserva criada com sucesso",
+    ERROR_TIME_EXIST: "Horário já existe",
+    ERROR_TIME_CONVERT: "Formato de horário inválido",
+    SUCESS_DELETE: "Reserva deletada",
+    ERROR_NOT_DELETE: "Reserva não deletada",
+    INVALID_EMAIL: "Email inválido",
+    NOT_FOUND_EMAIL: "Email não encontrado",
+    TOKEN_NOT_SEND: "Token não foi enviado",
+    FORMAT_TOKEN_INVALID: "Formato inválido do token",
+    ERROR_TIME_INVALID: "Esse horário é inválido",
+    ERROR_TIME_EQUAL: "Não reserve por 0 minutos",
+    ERROR_TIME_OUT: "Só reserve por até 8 horas",
+    ERROR_TIME_PAST: "Esse horário já passou",
+}

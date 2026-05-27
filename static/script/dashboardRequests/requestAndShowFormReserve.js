@@ -1,6 +1,7 @@
 import { requestServer } from "../utils/requestServer.js";
 import { validateDateTime } from "../utils/formatDateTime.js";
 import { notificationPopUp } from '../utils/notificationPopUp.js'; 
+import { messageRequest } from "../utils/messageRequest.js";
 
 export async function requestAndShowFormReserve(){
     const formReserveHtml = await requestServer('/form', true);
@@ -33,12 +34,10 @@ async function requestSetMyReserve(event){
         }
 
         const response = await requestServer('/api/setMyReserve', false, options);
-
-        if(response.sucess){
-            notificationPopUp('Reserva salva !');
-        } else {
-            notificationPopUp('Não foi possivel reservar');
-        }
+        
+        const msg = response.message;
+        
+        notificationPopUp(messageRequest[msg]);
 
     } catch(err) {
 

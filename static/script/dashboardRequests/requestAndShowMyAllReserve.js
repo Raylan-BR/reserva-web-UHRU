@@ -1,6 +1,7 @@
 import { requestServer } from '../utils/requestServer.js';
 import { getDateReserve, getTimeReserve } from '../utils/formatDateTime.js';
 import { notificationPopUp } from '../utils/notificationPopUp.js';
+import { messageRequest } from '../utils/messageRequest.js';
 
 export async function requestAndShowMyAllReserve() {
     const myAllReserveJson = await requestServer('/api/getMyAllReserve');
@@ -50,13 +51,11 @@ async function requestDeleteMyReserve(event){
     const response = await requestServer(`/api/delete/${_id}`, false, options);
 
     if(response.sucess){
-        console.log('Exterminado !');
-        notificationPopUp('Exterminado !');
         itemDeleted.remove();
-    } else {
-        notificationPopUp('Não foi deletado !');
-        console.log('Não foi possivel deletar');
-    }
+    } 
+
+    const msg = response.message
+    notificationPopUp(messageRequest[msg]);
 }
 
 function showTitlePage(title, divMain){

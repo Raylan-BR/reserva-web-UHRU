@@ -14,7 +14,7 @@ class apiController:
                 if not token:
                     return jsonify({
                             'sucess': False,
-                            'message': 'Not generate token'
+                            'message': 'NOT_GENERATE_TOKEN'
                         }), 401
                 return jsonify({
                             'sucess': True,
@@ -25,7 +25,7 @@ class apiController:
             print('Error in getTokenLogin method !')
             return jsonify({
                             'sucess': False,
-                            'message': 'Problems in process'
+                            'message': 'PROBLEMS_IN_PROCESS'
                         }), 401
         
     @staticmethod
@@ -48,7 +48,7 @@ class apiController:
             print('Error in setMyReserve method !')
             jsonify({
                     'sucess': False,
-                    'message': 'Invalid datas'
+                    'message': 'INVALID_DATES'
                         }), 400
 
     @staticmethod

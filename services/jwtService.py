@@ -25,10 +25,14 @@ class jwtService:
         try:
             __token = auth_header.split(' ')[1]
             if not auth_header:
-                return {'error': 'Token not send'}
+                return {
+                    'sucess': False,
+                    'message': 'TOKEN_NOT_SEND'}
             return __token
         except:
-            return {'error': 'Invalid format'}
+            return {
+                'sucess': False,
+                'message': 'FORMAT_TOKEN_INVALID'}
         
     @staticmethod
     def getNameForToken(token):

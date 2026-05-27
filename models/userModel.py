@@ -8,12 +8,12 @@ class userModel(reserveModel):
         if not userModel.__checkEmail(email):
             return {
                 'sucess': False,
-                'message': 'Invalid email'}
+                'message': 'INVALID_EMAIL'}
         name = db.validate_email(email)
         if not name:
             return {
                 'sucess': False,
-                'message': 'Not found email'}
+                'message': 'NOT_FOUND_EMAIL'}
         return {
             'sucess': True,
             'name': name}

@@ -20,7 +20,7 @@ class reserveModel:
             
             return {
                 'sucess': True,
-                'message': 'Sucess create reserve'}
+                'message': 'SUCESS_CREATE_RESERVE'}
         except Exception as e:
             print(f'Error in createReserve method: {e}')
             return __time
@@ -48,7 +48,7 @@ class reserveModel:
             if reserveModel.__timeOverlap(_dateTimeStart, _dateTimeEnd):
                 return {
                     'sucess': False,
-                    'message': 'Error time exist'}
+                    'message': 'ERROR_TIME_EXIST'}
 
             # Passou pela validação            
             return {
@@ -61,7 +61,7 @@ class reserveModel:
             print(f'Error in __validateDateTime method: {e}')
             return {
                 'sucess': False,
-                'message': 'Error time convert'}
+                'message': 'ERROR_TIME_CONVERT'}
         
     @staticmethod
     def __timeOverlap(dateTimeStart, dateTimeEnd):
@@ -96,7 +96,7 @@ class reserveModel:
         if status:
             return {
                 'sucess': True,
-                'message': 'Sucess delete'}
+                'message': 'SUCESS_DELETE'}
         return {
             'sucess': False,
-            'message': 'Error not delete'}
+            'message': 'ERROR_NOT_DELETE'}
