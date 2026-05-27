@@ -7,7 +7,7 @@ class apiController:
     def getTokenLogin():
         try:
             datas = request.json
-            userEmail = datas.get('email')
+            userEmail = datas.get('email').lower()
             status = userModel.validateUserForEmail(userEmail)
             if status['sucess']:
                 token = jwtService.generateToken(status['name'])
