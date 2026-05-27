@@ -1,5 +1,6 @@
 import { requestServer } from "../utils/requestServer.js";
-
+import { validateDateTime } from "../utils/formatDateTime.js";
+import { notificationPopUp } from '../utils/notificationPopUp.js'; 
 
 export async function requestAndShowFormReserve(){
     const formReserveHtml = await requestServer('/form', true);
@@ -10,4 +11,38 @@ export async function requestAndShowFormReserve(){
     menuHtml.innerHTML = '';
 
     menuHtml.innerHTML = formReserveHtml;
+
+    document.querySelector('.reserve_home_now')
+    .addEventListener('submit', requestSetMyReserve);
+}
+
+async function requestSetMyReserve(event){
+
+    try {
+
+        event.preventDefault();
+
+        const dateInput = document.querySelector('#date').value;
+        const timeStart = document.querySelector('#timeStart').value;
+        const timeEnd = document.querySelector('#timeEnd').value;
+
+        const dateTime = validateDateTime(dateInput, timeStart, timeEnd);
+        const options = {
+            method : 'POST',
+            body: JSON.stringify(dateTime),
+        }
+
+        const response = await requestServer('/api/setMyReserve', false, options);
+
+        if(response.sucess){
+            notificationPopUp('Reserva salva !');
+        } else {
+            notificationPopUp('Não foi possivel reservar');
+        }
+
+    } catch(err) {
+
+        console.error(err);
+
+    }
 }

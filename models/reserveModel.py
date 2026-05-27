@@ -37,14 +37,13 @@ class reserveModel:
                 dateTimeEnd, "%Y-%m-%d %H:%M"
             ).replace(
                 tzinfo=ZoneInfo("America/Sao_Paulo"))
-            
             # Validar dados da requisição
             invalid = reserveService.checkDateTime(
                 _dateTimeStart, _dateTimeEnd)
             
             if invalid:
                 return invalid    
-            
+
             # Verificar sobreposição de horário
             if reserveModel.__timeOverlap(_dateTimeStart, _dateTimeEnd):
                 return {
@@ -52,8 +51,11 @@ class reserveModel:
                     'message': 'Error time exist'}
 
             # Passou pela validação            
-            return {'start': _dateTimeStart,
-                    'end': _dateTimeEnd}
+            return {
+                    'sucess': True,
+                    'start': _dateTimeStart,
+                    'end': _dateTimeEnd
+                }
         
         except Exception as e:
             print(f'Error in __validateDateTime method: {e}')

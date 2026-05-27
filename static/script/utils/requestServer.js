@@ -1,5 +1,3 @@
-const API_URL = 'http://localhost:5000';
-
 export async function requestServer(path, formatHtml=false, options = {}) {
   const tokenLocal = localStorage.getItem('token');
   const requestInfo = {
@@ -10,7 +8,7 @@ export async function requestServer(path, formatHtml=false, options = {}) {
       }
     }
 
-    const response = await fetch(API_URL + path, requestInfo);
+    const response = await fetch(path, requestInfo);
 
     if(formatHtml){
         return response.text();

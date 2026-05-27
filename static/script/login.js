@@ -1,3 +1,5 @@
+import { notificationPopUp } from './utils/notificationPopUp.js';
+
 document.querySelector('form').addEventListener('submit', (e) =>{
     e.preventDefault();
 
@@ -11,16 +13,15 @@ document.querySelector('form').addEventListener('submit', (e) =>{
         })
         .then(response => response.json())
         .then(data => {
-            console.log(`data: ${data}`)
             if (data.token){
                 localStorage.setItem('token', data.token);
                 window.location.href = '/';
             } else {
-                console.log('Não encontramos seu email !');
+                notificationPopUp('Não encontramos seu email !');
             }
         });
     
     } catch (error) {
-        console.error('Erro de requisição:', error);
+        notificationPopUp('Problema no servidor');
     }
 });
