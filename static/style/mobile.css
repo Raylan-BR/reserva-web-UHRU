@@ -1,5 +1,6 @@
 @media (max-width: 768px){
     body{
+        user-select: none;
         width: 100vw;
         flex-direction: column;
     }
