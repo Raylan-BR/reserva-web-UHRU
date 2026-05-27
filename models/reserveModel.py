@@ -22,7 +22,7 @@ class reserveModel:
                 'sucess': True,
                 'message': 'SUCESS_CREATE_RESERVE'}
         except Exception as e:
-            print(f'Error in createReserve method: {e}')
+            print(f'Error in create reserve: {e}')
             return __time
         
     @staticmethod
@@ -58,7 +58,7 @@ class reserveModel:
                 }
         
         except Exception as e:
-            print(f'Error in __validateDateTime method: {e}')
+            print(f'Error in validate DateTime: {e}')
             return {
                 'sucess': False,
                 'message': 'ERROR_TIME_CONVERT'}

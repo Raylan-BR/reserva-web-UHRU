@@ -9,12 +9,12 @@ def checkToken(f):
         token = jwtService.getTokenRequest()
 
         if isinstance(token, dict):
-            return jsonify(token), 200
+            return jsonify(token), 401
         
         payload = jwtService.validateToken(token)
         
         if not payload:
-            return jsonify({'error': 'Invalid token'}), 200
+            return jsonify({'error': 'Invalid token'}), 401
         return f(*args, **kwargs)
     return decorator
 
@@ -27,7 +27,7 @@ def checkAdm(f):
             return jsonify(token), 200
         
         if not token == Config.token_adm:
-            return jsonify({'error': 'Invalid token'}), 200
+            return jsonify({'error': 'Invalid token'}), 401
         return f(*args, **kwargs)
     return decorator
         

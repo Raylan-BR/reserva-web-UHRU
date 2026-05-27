@@ -22,7 +22,7 @@ class DatabaseMongoDb:
             if response:
                 return response['name']
         except Exception as e:
-            print(f'Error in validate_email method: {e}')
+            print(f'Error in validate email: {e}')
         return None
 
     def create_user(self, _name, _email):
@@ -33,7 +33,7 @@ class DatabaseMongoDb:
             self.__users.insert_one(query)
             return True
         except Exception as e:
-            print(f'Error in create_user method: {e}')
+            print(f'Error in create user: {e}')
             return False
 
     def create_register(
@@ -47,7 +47,7 @@ class DatabaseMongoDb:
             self.__registers.insert_one(query)
             return True
         except Exception as e:
-            print(f'Error in create_register method: {e}')
+            print(f'Error in create register: {e}')
             return False
     def get_all_register(self, name={}):
         try:
@@ -56,7 +56,7 @@ class DatabaseMongoDb:
                 reserve['_id'] = str(reserve['_id'])
             return allReserve
         except Exception as e:
-            print(f'Error in get_register_all method: {e}')
+            print(f'Error in get all register: {e}')
             return None
         
     def exist_reserve(
@@ -78,8 +78,8 @@ class DatabaseMongoDb:
             if _del.deleted_count != 0:
                 return True
             return False
-        except:
-            print('Error in delete_register method')
+        except Exception as e:
+            print(f'Error in delete register: {e}')
             return False
 
 db = DatabaseMongoDb()

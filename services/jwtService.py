@@ -42,5 +42,5 @@ class jwtService:
             payload = jwtService.validateToken(token)
             return payload['name']
         except:
-            print('Error in getNameForToken method !')
+            print('User not token !')
             return None
