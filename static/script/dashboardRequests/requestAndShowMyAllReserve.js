@@ -2,6 +2,7 @@ import { requestServer } from '../utils/requestServer.js';
 import { getDateReserve, getTimeReserve } from '../utils/formatDateTime.js';
 import { notificationPopUp } from '../utils/notificationPopUp.js';
 import { messageRequest } from '../utils/messageRequest.js';
+import { openCloseMenu } from '../utils/menuMobile.js';
 
 export async function requestAndShowMyAllReserve() {
     const myAllReserveJson = await requestServer('/api/getMyAllReserve');
@@ -40,6 +41,9 @@ async function showItemHtml(allReserve){
     document.querySelectorAll('.icon_delete').forEach(_delete => {
         _delete.addEventListener('click', requestDeleteMyReserve);
     });
+
+    // Retrair menu ao carregar items na tela
+    openCloseMenu(true);
 }
 async function requestDeleteMyReserve(event){
     const _id = event.currentTarget.dataset.id;

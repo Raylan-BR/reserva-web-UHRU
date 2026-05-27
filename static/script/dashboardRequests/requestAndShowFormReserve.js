@@ -2,6 +2,7 @@ import { requestServer } from "../utils/requestServer.js";
 import { validateDateTime } from "../utils/formatDateTime.js";
 import { notificationPopUp } from '../utils/notificationPopUp.js'; 
 import { messageRequest } from "../utils/messageRequest.js";
+import { openCloseMenu } from "../utils/menuMobile.js";
 
 export async function requestAndShowFormReserve(){
     const formReserveHtml = await requestServer('/form', true);
@@ -12,6 +13,8 @@ export async function requestAndShowFormReserve(){
     menuHtml.innerHTML = '';
 
     menuHtml.innerHTML = formReserveHtml;
+
+    openCloseMenu(true);
 
     document.querySelector('.reserve_home_now')
     .addEventListener('submit', requestSetMyReserve);

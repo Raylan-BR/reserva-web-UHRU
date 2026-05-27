@@ -1,5 +1,6 @@
 import { requestServer } from "../utils/requestServer.js";
 import { getDateReserve, getTimeReserve } from "../utils/formatDateTime.js";
+import { openCloseMenu } from "../utils/menuMobile.js";
 
 
 export async function requestAndShowAllReserve() {
@@ -27,6 +28,9 @@ async function showItemHtml(allReserve){
         const reserveHtml = buildItemPage(reserve, itemHtml);
         menuHtml.appendChild(reserveHtml);
     });
+
+    // Retrair menu ao carregar dados na tela
+    openCloseMenu(true);
 }
 function showTitlePage(title, divMain){
     const titlePageHtml = document.createElement("h2");
