@@ -40,6 +40,12 @@ async function requestSetMyReserve(event){
         
         notificationPopUp(messageRequest[response.message]);
 
+        if(response.sucess){
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
+        }
+
     } catch(err) {
 
         console.error(err);

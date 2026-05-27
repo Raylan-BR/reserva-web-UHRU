@@ -10,7 +10,7 @@ export function notificationPopUp(message) {
     }
     setTimeout(() => {
         box_notice.remove();
-      }, 2800);
+      }, 2500);
 }
 function render_box_notificate(message){
     return `

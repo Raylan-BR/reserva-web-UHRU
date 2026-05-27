@@ -2,7 +2,7 @@ export const messageRequest = {
     NOT_GENERATE_TOKEN: "Token não foi gerado",
     PROBLEMS_IN_PROCESS: "Problemas no processamento",
     INVALID_DATES: "Reserva inválida",
-    SUCESS_CREATE_RESERVE: "Reserva criada com sucesso",
+    SUCESS_CREATE_RESERVE: "Criada com sucesso, redirecionando...",
     ERROR_TIME_EXIST: "Horário já existe",
     ERROR_TIME_CONVERT: "Formato de horário inválido",
     SUCESS_DELETE: "Reserva deletada",
