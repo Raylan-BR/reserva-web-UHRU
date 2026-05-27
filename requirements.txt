@@ -2,4 +2,5 @@ pymongo
 dotenv
 pyjwt
 flask
+flask-cors
 gunicorn
