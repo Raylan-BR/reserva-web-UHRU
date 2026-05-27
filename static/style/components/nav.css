@@ -32,6 +32,7 @@ nav{
     color: #1b263b;
 }
 .option_nav{
+    all: unset;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -44,6 +45,7 @@ nav{
     cursor: pointer;
     text-decoration: none;
     cursor: pointer;
+    width: 100%;
 }
 .option_nav:hover{
     background-color: #65758c4b;
